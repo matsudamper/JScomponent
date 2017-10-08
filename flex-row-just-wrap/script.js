@@ -29,9 +29,10 @@ function FlexRowJustSpace() {
                         if (addSpaceCount + spaceItemCount !== rowCount) {
                             for (var ii = 0; ii < addSpaceCount; ii++) {
 
-                                var child = obj.firstElementChild.cloneNode(false);
+                                var child = obj.firstElementChild.cloneNode(true);
                                 child.classList.add("flex-row-just-space");
                                 child.style.opacity = 0;
+                                child.style.pointerEvents = "none";
 
                                 obj.appendChild(child);
                             }
