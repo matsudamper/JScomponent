@@ -46,6 +46,17 @@ function FlexRowJustSpace() {
                         }
                     }
 
+                    // 一列なら
+                    if (rowCount === 1) {
+                        for (var ii = 0; ii < obj.childElementCount; ii++) {
+                            obj.childNodes[ii].classList.add("flex-row-just-wrap__single-column");
+                        }
+                    }else {
+                        for (var ii = 0; ii < obj.childElementCount; ii++) {
+                            obj.childNodes[ii].classList.remove("flex-row-just-wrap__single-column");
+                        }
+                    }
+
                     return;
                 }
             }
