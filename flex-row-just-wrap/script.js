@@ -31,8 +31,6 @@ function FlexRowJustSpace() {
 
                                 var child = obj.firstElementChild.cloneNode(true);
                                 child.classList.add("flex-row-just-space");
-                                child.style.opacity = 0;
-                                child.style.pointerEvents = "none";
 
                                 obj.appendChild(child);
                             }
