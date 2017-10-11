@@ -6,7 +6,7 @@ function FlexRowJustSpace() {
     for (var classCount = 0; classCount < document.getElementsByClassName("flex-row-just-wrap").length; classCount++) {
         var obj = document.getElementsByClassName("flex-row-just-wrap").item(classCount);
 
-        var spaceItemCount = document.getElementsByClassName("flex-row-just-space").length;
+        var spaceItemCount = obj.getElementsByClassName("flex-row-just-space").length;
 
         // 存在するなら
         if (obj.firstElementChild) {
@@ -57,7 +57,7 @@ function FlexRowJustSpace() {
                         }
                     }
 
-                    return;
+                    break;
                 }
             }
         }
