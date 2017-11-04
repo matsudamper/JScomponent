@@ -3,8 +3,8 @@ if (typeof kotlin === 'undefined') {
 }
 var selector = function (_, Kotlin) {
   'use strict';
-  var listOf = Kotlin.kotlin.collections.listOf_i5x0yv$;
   var Unit = Kotlin.kotlin.Unit;
+  var listOf = Kotlin.kotlin.collections.listOf_i5x0yv$;
   var filterNotNull = Kotlin.kotlin.collections.filterNotNull_m3lr2h$;
   var Error_0 = Kotlin.kotlin.Error;
   var Enum = Kotlin.kotlin.Enum;
@@ -38,7 +38,7 @@ var selector = function (_, Kotlin) {
       return this.targetName_6pi2g7$_0;
     }
   });
-  ClassSelector.prototype.stateChanged_b11rvu$ = function (windowState, beforeWindowState) {
+  ClassSelector.prototype.stateChanged_byp9cv$ = function (windowState) {
     var tmp$, tmp$_0, tmp$_1, tmp$_2, tmp$_3;
     tmp$_1 = (tmp$_0 = (tmp$ = document.body) != null ? tmp$.getElementsByTagName(this.elementName) : null) != null ? toArray(tmp$_0) : null;
     if (tmp$_1 == null) {
@@ -87,27 +87,27 @@ var selector = function (_, Kotlin) {
     this.windowState_0 = WindowState$MEDIUM_getInstance();
     this.selectorRoot_0 = new Selector$selectorRoot$ObjectLiteral(this);
   }
+  Selector.prototype.getWindowState_0 = function () {
+    if (window.innerWidth <= this.SmallBreakPoint)
+      return WindowState$SMALL_getInstance();
+    else
+      return WindowState$MEDIUM_getInstance();
+  };
   function Selector$selectorRoot$ObjectLiteral(this$Selector) {
     this.this$Selector = this$Selector;
   }
   Selector$selectorRoot$ObjectLiteral.prototype.handleEvent = function (event) {
-    var tmp$, tmp$_0;
+    var tmp$;
     var beforeWindowState = this.this$Selector.windowState_0;
-    if (window.innerWidth <= this.this$Selector.SmallBreakPoint) {
-      if (this.this$Selector.windowState_0 === WindowState$SMALL_getInstance())
-        return;
-      tmp$ = WindowState$SMALL_getInstance();
-    }
-     else {
-      if (this.this$Selector.windowState_0 === WindowState$MEDIUM_getInstance())
-        return;
-      tmp$ = WindowState$MEDIUM_getInstance();
-    }
-    this.this$Selector.windowState_0 = tmp$;
-    tmp$_0 = this.this$Selector.selectors.iterator();
-    while (tmp$_0.hasNext()) {
-      var item = tmp$_0.next();
-      item.stateChanged_b11rvu$(this.this$Selector.windowState_0, beforeWindowState);
+    var tmp$_0 = this.this$Selector;
+    var $receiver = this.this$Selector.getWindowState_0();
+    if ($receiver === beforeWindowState)
+      return;
+    tmp$_0.windowState_0 = $receiver;
+    tmp$ = this.this$Selector.selectors.iterator();
+    while (tmp$.hasNext()) {
+      var item = tmp$.next();
+      item.stateChanged_byp9cv$(this.this$Selector.windowState_0);
     }
   };
   Selector$selectorRoot$ObjectLiteral.$metadata$ = {
@@ -129,7 +129,7 @@ var selector = function (_, Kotlin) {
   }
   function Selector_init$lambda(this$Selector) {
     return function (it) {
-      this$Selector.selectors = listOf([ClassSelector_init(), VisibilitySelector_init()]);
+      this$Selector.selectors = listOf([ClassSelector_init(), new VisibilitySelector(this$Selector.getWindowState_0())]);
       return Unit;
     };
   }
@@ -151,8 +151,12 @@ var selector = function (_, Kotlin) {
     }
     return $receiver_0;
   }
-  function VisibilitySelector() {
+  function VisibilitySelector(windowState) {
+    this.windowState = windowState;
     this.targetName_u00erl$_0 = 'visibility';
+    var tmp$, tmp$_0;
+    (tmp$_0 = (tmp$ = document.body) != null ? tmp$.getElementsByTagName(this.elementName) : null) != null ? (forEach(tmp$_0, VisibilitySelector_init$lambda(this)), Unit) : null;
+    this.stateChanged_byp9cv$(this.windowState);
   }
   Object.defineProperty(VisibilitySelector.prototype, 'targetName', {
     get: function () {
@@ -184,22 +188,10 @@ var selector = function (_, Kotlin) {
       return Unit;
     };
   }
-  VisibilitySelector.prototype.stateChanged_b11rvu$ = function (windowState, beforeWindowState) {
+  VisibilitySelector.prototype.stateChanged_byp9cv$ = function (windowState) {
     var tmp$, tmp$_0;
     (tmp$_0 = (tmp$ = document.body) != null ? tmp$.getElementsByTagName(this.elementName) : null) != null ? (forEach(tmp$_0, VisibilitySelector$stateChanged$lambda(windowState, this)), Unit) : null;
   };
-  VisibilitySelector.$metadata$ = {
-    kind: Kotlin.Kind.CLASS,
-    simpleName: 'VisibilitySelector',
-    interfaces: [BaseSelector]
-  };
-  function VisibilitySelector_init($this) {
-    $this = $this || Object.create(VisibilitySelector.prototype);
-    VisibilitySelector.call($this);
-    var tmp$, tmp$_0;
-    (tmp$_0 = (tmp$ = document.body) != null ? tmp$.getElementsByTagName($this.elementName) : null) != null ? (forEach(tmp$_0, VisibilitySelector_init$lambda($this)), Unit) : null;
-    return $this;
-  }
   var Collection = Kotlin.kotlin.collections.Collection;
   function VisibilitySelector_init$lambda(this$VisibilitySelector) {
     return function (parent) {
@@ -301,6 +293,11 @@ var selector = function (_, Kotlin) {
       return Unit;
     };
   }
+  VisibilitySelector.$metadata$ = {
+    kind: Kotlin.Kind.CLASS,
+    simpleName: 'VisibilitySelector',
+    interfaces: [BaseSelector]
+  };
   function WindowState(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
@@ -353,7 +350,6 @@ var selector = function (_, Kotlin) {
   });
   _.forEach_kskzji$ = forEach;
   _.toArray_sg7yuv$ = toArray;
-  _.VisibilitySelector_init = VisibilitySelector_init;
   _.VisibilitySelector = VisibilitySelector;
   Object.defineProperty(WindowState, 'SMALL', {
     get: WindowState$SMALL_getInstance

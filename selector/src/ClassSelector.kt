@@ -16,7 +16,7 @@ class ClassSelector : BaseSelector {
         }
     }
 
-    override fun stateChanged(windowState: WindowState, beforeWindowState: WindowState) {
+    override fun stateChanged(windowState: WindowState) {
 
         for (item in document.body?.getElementsByTagName(elementName)?.toArray() ?: return) {
             item ?: continue

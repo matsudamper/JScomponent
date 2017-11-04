@@ -8,5 +8,5 @@ interface BaseSelector {
         WindowState.MEDIUM -> "data-$targetName-m"
     }
 
-    fun stateChanged(windowState: WindowState, beforeWindowState: WindowState)
+    fun stateChanged(windowState: WindowState)
 }
