@@ -1,10 +1,10 @@
 import org.w3c.dom.HTMLElement
 import kotlin.browser.document
 
-class VisibilitySelector : BaseSelector {
+class VisibilitySelector(val windowState: WindowState) : BaseSelector {
     override val targetName: String = "visibility"
 
-    constructor() {
+    init {
         document.body?.getElementsByTagName(elementName)?.forEach { parent ->
             parent?.children?.toArray()?.filterNotNull()?.forEach { child ->
 
@@ -37,6 +37,8 @@ class VisibilitySelector : BaseSelector {
                         }
             }
         }
+
+        stateChanged(windowState, windowState)
     }
 
     override fun stateChanged(windowState: WindowState, beforeWindowState: WindowState) {

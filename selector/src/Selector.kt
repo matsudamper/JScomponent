@@ -11,7 +11,7 @@ class Selector {
     constructor() {
 
         window.addEventListener("load", {
-            selectors = listOf(ClassSelector(), VisibilitySelector())
+            selectors = listOf(ClassSelector(), VisibilitySelector(getWindowState()))
         }, false)
 
         window.addEventListener("load", selectorRoot, false)
