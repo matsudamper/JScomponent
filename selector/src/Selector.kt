@@ -28,7 +28,7 @@ class Selector {
             }
 
             for (item in selectors) {
-                item.stateChanged(windowState, beforeWindowState)
+                item.stateChanged(windowState)
             }
         }
     }

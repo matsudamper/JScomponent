@@ -38,10 +38,10 @@ class VisibilitySelector(val windowState: WindowState) : BaseSelector {
             }
         }
 
-        stateChanged(windowState, windowState)
+        stateChanged(windowState)
     }
 
-    override fun stateChanged(windowState: WindowState, beforeWindowState: WindowState) {
+    override fun stateChanged(windowState: WindowState) {
 
         document.body?.getElementsByTagName(elementName)?.forEach { parent ->
             parent?.children?.toArray()?.filterNotNull()?.forEach { child ->
