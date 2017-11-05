@@ -1,12 +1,13 @@
+package net.matsudamper.selector
+
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
 import kotlin.browser.window
 
 class Selector {
-    val SmallBreakPoint = 800
 
     lateinit var selectors: List<BaseSelector>
-    private var windowState = WindowState.MEDIUM
+    private var windowState: WindowState? = null
 
     constructor() {
 
@@ -25,17 +26,22 @@ class Selector {
             val beforeWindowState = windowState
             windowState = getWindowState().also {
                 if (it == beforeWindowState) return
-            }
 
-            for (item in selectors) {
-                item.stateChanged(windowState)
+                for (item in selectors) {
+                    item.stateChanged(it)
+                }
             }
         }
     }
 
-    private fun getWindowState() = when {
-        window.innerWidth <= SmallBreakPoint -> WindowState.SMALL
-        else -> WindowState.MEDIUM
+    private fun getWindowState() = window.innerWidth.let { width->
+        when {
+            width < WindowState.SM.getBreakPoint()-> WindowState.XS
+            width < WindowState.MD.getBreakPoint()-> WindowState.SM
+            width < WindowState.LG.getBreakPoint()-> WindowState.MD
+            width < WindowState.SM.getBreakPoint()-> WindowState.LG
+            else-> WindowState.XL
+        }
     }
 }
 

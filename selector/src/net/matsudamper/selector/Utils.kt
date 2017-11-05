@@ -1,3 +1,5 @@
+package net.matsudamper.selector
+
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLCollection
 import org.w3c.dom.get
