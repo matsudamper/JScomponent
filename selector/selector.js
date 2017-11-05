@@ -192,7 +192,7 @@ var selector = function (_, Kotlin) {
      else if (width < WindowState$LG_getInstance().getBreakPoint()) {
       block$result = WindowState$MD_getInstance();
     }
-     else if (width < WindowState$SM_getInstance().getBreakPoint()) {
+     else if (width < WindowState$XL_getInstance().getBreakPoint()) {
       block$result = WindowState$LG_getInstance();
     }
      else {

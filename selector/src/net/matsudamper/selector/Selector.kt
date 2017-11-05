@@ -39,7 +39,7 @@ class Selector {
             width < WindowState.SM.getBreakPoint()-> WindowState.XS
             width < WindowState.MD.getBreakPoint()-> WindowState.SM
             width < WindowState.LG.getBreakPoint()-> WindowState.MD
-            width < WindowState.SM.getBreakPoint()-> WindowState.LG
+            width < WindowState.XL.getBreakPoint()-> WindowState.LG
             else-> WindowState.XL
         }
     }
