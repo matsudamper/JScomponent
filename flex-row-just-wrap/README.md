@@ -1,6 +1,6 @@
 # flex-row-just-wrap
 サイズが固定されている複数要素を横に均等に縦列を揃えて並べたい時に親のクラスに「flex-row-just-wrap」を追加する。  
-左寄せでいいなら[flex-arrange](./flex-arrange)を使ったほうが軽量である。  
+左寄せでいいなら[flex-arrange](../flex-arrange)を使ったほうが軽量である。  
 
 ## 動作
 1. 最初に配置されている要素から高さが変わるまでの要素数を調べる
