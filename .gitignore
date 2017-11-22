@@ -1,3 +1,4 @@
 workspace.xml
 *.meta.js
 *.kjsm
+*.iml
