@@ -44,7 +44,7 @@ class Layout {
     }
 
     init {
-        window.addEventListener("load", EventListener {
+        window.addEventListener("DOMContentLoaded", EventListener {
 
             val displaySize = Math.max(window.parent.screen.width, window.parent.screen.height)
 
@@ -62,7 +62,7 @@ class Layout {
             }
         }, false)
 
-        window.addEventListener("load", onResized, false)
+        window.addEventListener("DOMContentLoaded", onResized, false)
         window.addEventListener("resize", onResized, false)
     }
 }

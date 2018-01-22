@@ -3,25 +3,28 @@ if (typeof kotlin === 'undefined') {
 }
 this['flex-arrange'] = function (_, Kotlin) {
   'use strict';
-  var IllegalStateException = Kotlin.kotlin.IllegalStateException;
+  var IllegalStateException_init = Kotlin.kotlin.IllegalStateException_init;
   var toDoubleOrNull = Kotlin.kotlin.text.toDoubleOrNull_pdl1vz$;
   var IntRange = Kotlin.kotlin.ranges.IntRange;
   var Unit = Kotlin.kotlin.Unit;
   var EventListener = Kotlin.org.w3c.dom.events.EventListener_gbr1zf$;
+  var numberToInt = Kotlin.numberToInt;
+  var throwCCE = Kotlin.throwCCE;
+  var Kind_CLASS = Kotlin.Kind.CLASS;
   function Layout() {
     this.tagName_0 = 'flex-arrange';
     this.spaceName_0 = 'flex-arrange-space';
     this.beforeHeight_0 = 'data-before-height';
     this.onResized_0 = EventListener(Layout$onResized$lambda(this));
-    window.addEventListener('load', EventListener(Layout_init$lambda(this)), false);
-    window.addEventListener('load', this.onResized_0, false);
+    window.addEventListener('DOMContentLoaded', EventListener(Layout_init$lambda(this)), false);
+    window.addEventListener('DOMContentLoaded', this.onResized_0, false);
     window.addEventListener('resize', this.onResized_0, false);
   }
   Layout.prototype.isSingle_0 = function (parent) {
     var tmp$, tmp$_0, tmp$_1, tmp$_2;
     tmp$_1 = (tmp$_0 = (tmp$ = parent.firstElementChild) != null ? tmp$.getBoundingClientRect() : null) != null ? tmp$_0.top : null;
     if (tmp$_1 == null) {
-      throw new IllegalStateException();
+      throw IllegalStateException_init();
     }
     var firstTop = tmp$_1;
     tmp$_2 = parent.children[1];
@@ -83,10 +86,10 @@ this['flex-arrange'] = function (_, Kotlin) {
           continue;
         }
         var child = tmp$_3;
-        var childWidth = child.getBoundingClientRect().width | 0;
+        var childWidth = numberToInt(child.getBoundingClientRect().width);
         tmp$_4 = displaySize / childWidth | 0;
         for (var i = 0; i <= tmp$_4; i++) {
-          var newChild = Kotlin.isType(tmp$_5 = child.cloneNode(false), Element) ? tmp$_5 : Kotlin.throwCCE();
+          var newChild = Kotlin.isType(tmp$_5 = child.cloneNode(false), Element) ? tmp$_5 : throwCCE();
           newChild.classList.add(this$Layout.spaceName_0);
           parent.append(newChild);
         }
@@ -95,7 +98,7 @@ this['flex-arrange'] = function (_, Kotlin) {
     };
   }
   Layout.$metadata$ = {
-    kind: Kotlin.Kind.CLASS,
+    kind: Kind_CLASS,
     simpleName: 'Layout',
     interfaces: []
   };
