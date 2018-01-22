@@ -1,0 +1,9 @@
+ul.sushi {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  background: gainsboro;
+  flex-direction: row;
+  list-style: none; }
+
+/*# sourceMappingURL=style.css.map */
