@@ -3,105 +3,96 @@ if (typeof kotlin === 'undefined') {
 }
 var sushi_go_round = function (_, Kotlin) {
   'use strict';
-  var throwUPAE = Kotlin.throwUPAE;
-  var ensureNotNull = Kotlin.ensureNotNull;
   var Unit = Kotlin.kotlin.Unit;
   var toInt = Kotlin.kotlin.text.toInt_pdl1vz$;
-  var Kind_CLASS = Kotlin.Kind.CLASS;
-  var throwCCE = Kotlin.throwCCE;
+  var ensureNotNull = Kotlin.ensureNotNull;
+  var IllegalStateException_init = Kotlin.kotlin.IllegalStateException_init;
   var EventListener = Kotlin.org.w3c.dom.events.EventListener_gbr1zf$;
+  var Kind_CLASS = Kotlin.Kind.CLASS;
+  var LinkedHashMap_init = Kotlin.kotlin.collections.LinkedHashMap_init_q3lmfv$;
   function SushiGoRound() {
-    this.styleSheet_mnmm7i$_0 = this.styleSheet_mnmm7i$_0;
-    this.targetRuleIndex = null;
-    this.ulArray_qqjy0i$_0 = this.ulArray_qqjy0i$_0;
+    this.loopCounter = LinkedHashMap_init();
     this.onAction_0 = EventListener(SushiGoRound$onAction$lambda(this));
     window.addEventListener('DOMContentLoaded', this.onAction_0, false);
   }
-  Object.defineProperty(SushiGoRound.prototype, 'styleSheet', {
-    get: function () {
-      if (this.styleSheet_mnmm7i$_0 == null)
-        return throwUPAE('styleSheet');
-      return this.styleSheet_mnmm7i$_0;
-    },
-    set: function (styleSheet) {
-      this.styleSheet_mnmm7i$_0 = styleSheet;
-    }
-  });
-  Object.defineProperty(SushiGoRound.prototype, 'ulArray', {
-    get: function () {
-      if (this.ulArray_qqjy0i$_0 == null)
-        return throwUPAE('ulArray');
-      return this.ulArray_qqjy0i$_0;
-    },
-    set: function (ulArray) {
-      this.ulArray_qqjy0i$_0 = ulArray;
-    }
-  });
-  function SushiGoRound$slide$ObjectLiteral(closure$current, closure$children, this$SushiGoRound) {
-    this.closure$current = closure$current;
-    this.closure$children = closure$children;
-    this.this$SushiGoRound = this$SushiGoRound;
-  }
-  SushiGoRound$slide$ObjectLiteral.prototype.handleEvent = function (event) {
-    this.closure$current.removeEventListener('webkitAnimationEnd', this);
-    var $receiver = this.closure$children;
-    this.closure$children;
-    var tmp$;
-    tmp$ = $receiver.iterator();
-    while (tmp$.hasNext()) {
-      var element = tmp$.next();
-      var closure$children = this.closure$children;
-      var tmp$_0, tmp$_1;
-      var order = toInt(element.style.order);
-      tmp$_1 = element.style;
-      if (order === 0)
-        tmp$_0 = (closure$children.size - 1 | 0).toString();
-      else
-        tmp$_0 = (order - 1 | 0).toString();
-      tmp$_1.order = tmp$_0;
-    }
-    this.this$SushiGoRound.slide_0(this.closure$current, this.closure$children);
-  };
-  SushiGoRound$slide$ObjectLiteral.$metadata$ = {
-    kind: Kind_CLASS,
-    interfaces: []
-  };
-  var NoSuchElementException_init = Kotlin.kotlin.NoSuchElementException;
-  SushiGoRound.prototype.slide_0 = function (current, children) {
-    if (this.styleSheet.cssRules[ensureNotNull(this.targetRuleIndex)] != null) {
-      this.styleSheet.deleteRule(ensureNotNull(this.targetRuleIndex));
+  function SushiGoRound$onAction$lambda$lambda$lambda$orderChange(closure$children) {
+    return function () {
+      var $receiver = closure$children;
       var tmp$;
-      tmp$ = children.iterator();
+      tmp$ = $receiver.iterator();
       while (tmp$.hasNext()) {
         var element = tmp$.next();
-        var tmp$_0;
-        (tmp$_0 = current != null ? current.style : null) != null ? (tmp$_0.animation = 'none') : null;
+        var closure$children_0 = closure$children;
+        var tmp$_0, tmp$_1;
+        var order = toInt(element.style.order);
+        tmp$_1 = element.style;
+        if (order === 0)
+          tmp$_0 = (closure$children_0.size - 1 | 0).toString();
+        else
+          tmp$_0 = (order - 1 | 0).toString();
+        tmp$_1.order = tmp$_0;
       }
-    }
-    var first$result;
-    first$break: do {
-      var tmp$_1;
-      tmp$_1 = children.iterator();
-      while (tmp$_1.hasNext()) {
-        var element_0 = tmp$_1.next();
-        if (toInt(element_0.style.order) === 0) {
-          first$result = element_0;
-          break first$break;
+    };
+  }
+  var NoSuchElementException_init = Kotlin.kotlin.NoSuchElementException;
+  var abs = Kotlin.kotlin.math.abs_za3lpa$;
+  function SushiGoRound$onAction$lambda$lambda$lambda(closure$children, closure$description, this$SushiGoRound, closure$index) {
+    return function () {
+      var $receiver = closure$children;
+      var first$result;
+      first$break: do {
+        var tmp$;
+        tmp$ = $receiver.iterator();
+        while (tmp$.hasNext()) {
+          var element = tmp$.next();
+          if (toInt(element.style.order) === 0) {
+            first$result = element;
+            break first$break;
+          }
         }
+        throw new NoSuchElementException_init('Collection contains no element matching the predicate.');
       }
-      throw new NoSuchElementException_init('Collection contains no element matching the predicate.');
-    }
-     while (false);
-    var current_0 = first$result;
-    var keyframes = '\n' + '                        @keyframes slide {' + '\n' + '                            to {' + '\n' + '                                margin-left: ' + (-current_0.clientWidth | 0) + 'px;' + '\n' + '                            }' + '\n' + '                        }' + '\n' + '                        ';
-    this.styleSheet.insertRule(keyframes, ensureNotNull(this.targetRuleIndex));
-    current_0.addEventListener('webkitAnimationEnd', new SushiGoRound$slide$ObjectLiteral(current_0, children, this));
-    var $receiver = current_0.style;
-    $receiver.animationName = 'slide';
-    $receiver.animationDuration = '3s';
-    $receiver.animationIterationCount = '1';
-    $receiver.animationTimingFunction = 'linear';
-  };
+       while (false);
+      var current = first$result;
+      var orderChange = SushiGoRound$onAction$lambda$lambda$lambda$orderChange(closure$children);
+      switch (closure$description) {
+        case 'row':
+          if (abs(ensureNotNull(this$SushiGoRound.loopCounter.get_11rb$(closure$index))) >= current.clientWidth) {
+            current.style.marginLeft = (0).toString();
+            var $receiver_0 = this$SushiGoRound.loopCounter;
+            var key = closure$index;
+            $receiver_0.put_xwzc9p$(key, 0);
+            orderChange();
+            return;
+          }
+           else {
+            current.style.marginLeft = ensureNotNull(this$SushiGoRound.loopCounter.get_11rb$(closure$index)).toString() + 'px';
+          }
+
+          break;
+        case 'row-reverse':
+          if (abs(ensureNotNull(this$SushiGoRound.loopCounter.get_11rb$(closure$index))) >= current.clientWidth) {
+            current.style.marginRight = (0).toString();
+            var $receiver_1 = this$SushiGoRound.loopCounter;
+            var key_0 = closure$index;
+            $receiver_1.put_xwzc9p$(key_0, 0);
+            orderChange();
+            return;
+          }
+           else {
+            current.style.marginRight = ensureNotNull(this$SushiGoRound.loopCounter.get_11rb$(closure$index)).toString() + 'px';
+          }
+
+          break;
+        default:throw IllegalStateException_init();
+      }
+      var $receiver_2 = this$SushiGoRound.loopCounter;
+      var key_1 = closure$index;
+      var value = ensureNotNull(this$SushiGoRound.loopCounter.get_11rb$(closure$index)) - 1 | 0;
+      $receiver_2.put_xwzc9p$(key_1, value);
+      return Unit;
+    };
+  }
   var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_ww73n8$;
   var wrapFunction = Kotlin.wrapFunction;
   var mapNotNullTo$lambda = wrapFunction(function () {
@@ -128,59 +119,52 @@ var sushi_go_round = function (_, Kotlin) {
   });
   function SushiGoRound$onAction$lambda(this$SushiGoRound) {
     return function (it) {
+      var $receiver = toArray(document.getElementsByClassName('sushi'));
+      var destination = ArrayList_init();
       var tmp$;
-      if (!(this$SushiGoRound.styleSheet_mnmm7i$_0 != null)) {
-        this$SushiGoRound.styleSheet = Kotlin.isType(tmp$ = document.styleSheets[0], CSSStyleSheet) ? tmp$ : throwCCE();
-      }
-      if (this$SushiGoRound.targetRuleIndex == null) {
-        this$SushiGoRound.targetRuleIndex = this$SushiGoRound.styleSheet.cssRules.length;
-      }
-      if (!(this$SushiGoRound.ulArray_qqjy0i$_0 != null)) {
-        var tmp$_0 = this$SushiGoRound;
-        var $receiver = toArray(document.getElementsByClassName('sushi'));
-        var destination = ArrayList_init();
+      tmp$ = $receiver.iterator();
+      while (tmp$.hasNext()) {
+        var element = tmp$.next();
+        var tmp$_0;
         var tmp$_1;
-        tmp$_1 = $receiver.iterator();
-        while (tmp$_1.hasNext()) {
-          var element = tmp$_1.next();
-          var tmp$_0_0;
-          var tmp$_2;
-          if ((tmp$_0_0 = Kotlin.isType(tmp$_2 = element, HTMLUListElement) ? tmp$_2 : null) != null) {
-            destination.add_11rb$(tmp$_0_0);
-          }
+        if ((tmp$_0 = Kotlin.isType(tmp$_1 = element, HTMLUListElement) ? tmp$_1 : null) != null) {
+          destination.add_11rb$(tmp$_0);
         }
-        tmp$_0.ulArray = destination;
       }
-      var $receiver_0 = this$SushiGoRound.ulArray;
-      var tmp$_3;
-      tmp$_3 = $receiver_0.iterator();
-      while (tmp$_3.hasNext()) {
-        var element_0 = tmp$_3.next();
+      var ulArray = destination;
+      var tmp$_2, tmp$_0_0;
+      var index = 0;
+      tmp$_2 = ulArray.iterator();
+      while (tmp$_2.hasNext()) {
+        var item = tmp$_2.next();
         var this$SushiGoRound_0 = this$SushiGoRound;
-        var $receiver_1 = toArray(element_0.children);
+        var index_0 = (tmp$_0_0 = index, index = tmp$_0_0 + 1 | 0, tmp$_0_0);
+        var description = window.getComputedStyle(item, null).getPropertyValue('flex-direction');
+        var $receiver_0 = toArray(item.children);
         var destination_0 = ArrayList_init();
-        var tmp$_4;
-        tmp$_4 = $receiver_1.iterator();
-        while (tmp$_4.hasNext()) {
-          var element_1 = tmp$_4.next();
+        var tmp$_3;
+        tmp$_3 = $receiver_0.iterator();
+        while (tmp$_3.hasNext()) {
+          var element_0 = tmp$_3.next();
           var tmp$_0_1;
-          var tmp$_5;
-          if ((tmp$_0_1 = Kotlin.isType(tmp$_5 = element_1, HTMLLIElement) ? tmp$_5 : null) != null) {
+          var tmp$_4;
+          if ((tmp$_0_1 = Kotlin.isType(tmp$_4 = element_0, HTMLLIElement) ? tmp$_4 : null) != null) {
             destination_0.add_11rb$(tmp$_0_1);
           }
         }
         var children = destination_0;
         if (children.get_za3lpa$(0).style.order.length === 0) {
-          var tmp$_6, tmp$_0_2;
-          var index = 0;
-          tmp$_6 = children.iterator();
-          while (tmp$_6.hasNext()) {
-            var item = tmp$_6.next();
-            var index_0 = (tmp$_0_2 = index, index = tmp$_0_2 + 1 | 0, tmp$_0_2);
-            item.style.order = index_0.toString();
+          var tmp$_5, tmp$_0_2;
+          var index_1 = 0;
+          tmp$_5 = children.iterator();
+          while (tmp$_5.hasNext()) {
+            var item_0 = tmp$_5.next();
+            var index_2 = (tmp$_0_2 = index_1, index_1 = tmp$_0_2 + 1 | 0, tmp$_0_2);
+            item_0.style.order = index_2.toString();
           }
         }
-        this$SushiGoRound_0.slide_0(null, children);
+        this$SushiGoRound_0.loopCounter.put_xwzc9p$(index_0, 0);
+        window.setInterval(SushiGoRound$onAction$lambda$lambda$lambda(children, description, this$SushiGoRound_0, index_0), 50);
       }
       return Unit;
     };

@@ -3,6 +3,12 @@ html, body {
   background: gray;
   width: 100%; }
 
+.horizon {
+  flex-direction: row !important; }
+
+.horizon-reverse {
+  flex-direction: row-reverse !important; }
+
 .sara {
   display: block;
   width: 100px;
