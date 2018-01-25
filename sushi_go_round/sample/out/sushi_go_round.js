@@ -4,9 +4,9 @@ if (typeof kotlin === 'undefined') {
 var sushi_go_round = function (_, Kotlin) {
   'use strict';
   var throwUPAE = Kotlin.throwUPAE;
-  var toInt = Kotlin.kotlin.text.toInt_pdl1vz$;
-  var Unit = Kotlin.kotlin.Unit;
   var ensureNotNull = Kotlin.ensureNotNull;
+  var Unit = Kotlin.kotlin.Unit;
+  var toInt = Kotlin.kotlin.text.toInt_pdl1vz$;
   var Kind_CLASS = Kotlin.Kind.CLASS;
   var throwCCE = Kotlin.throwCCE;
   var EventListener = Kotlin.org.w3c.dom.events.EventListener_gbr1zf$;
@@ -15,8 +15,7 @@ var sushi_go_round = function (_, Kotlin) {
     this.targetRuleIndex = null;
     this.ulArray_qqjy0i$_0 = this.ulArray_qqjy0i$_0;
     this.onAction_0 = EventListener(SushiGoRound$onAction$lambda(this));
-    window.addEventListener('load', this.onAction_0, false);
-    window.addEventListener('resize', this.onAction_0, false);
+    window.addEventListener('DOMContentLoaded', this.onAction_0, false);
   }
   Object.defineProperty(SushiGoRound.prototype, 'styleSheet', {
     get: function () {
@@ -38,24 +37,6 @@ var sushi_go_round = function (_, Kotlin) {
       this.ulArray_qqjy0i$_0 = ulArray;
     }
   });
-  SushiGoRound.prototype.finishEvent_0 = function (current, children) {
-    var tmp$, tmp$_0;
-    var index = 0;
-    tmp$ = children.iterator();
-    while (tmp$.hasNext()) {
-      var item = tmp$.next();
-      index = index + 1 | 0;
-      var tmp$_1, tmp$_2;
-      var order = toInt(item.style.order);
-      tmp$_2 = item.style;
-      if (order === 0)
-        tmp$_1 = (children.size - 1 | 0).toString();
-      else
-        tmp$_1 = (order - 1 | 0).toString();
-      tmp$_2.order = tmp$_1;
-    }
-    this.slide_0(current, children);
-  };
   function SushiGoRound$slide$ObjectLiteral(closure$current, closure$children, this$SushiGoRound) {
     this.closure$current = closure$current;
     this.closure$children = closure$children;
@@ -112,7 +93,7 @@ var sushi_go_round = function (_, Kotlin) {
     }
      while (false);
     var current_0 = first$result;
-    var keyframes = '\n' + '                        @keyframes slide {' + '\n' + '                            to {' + '\n' + '                                margin-left: ' + -current_0.clientWidth + 'px;' + '\n' + '                            }' + '\n' + '                        }' + '\n' + '                        ';
+    var keyframes = '\n' + '                        @keyframes slide {' + '\n' + '                            to {' + '\n' + '                                margin-left: ' + (-current_0.clientWidth | 0) + 'px;' + '\n' + '                            }' + '\n' + '                        }' + '\n' + '                        ';
     this.styleSheet.insertRule(keyframes, ensureNotNull(this.targetRuleIndex));
     current_0.addEventListener('webkitAnimationEnd', new SushiGoRound$slide$ObjectLiteral(current_0, children, this));
     var $receiver = current_0.style;

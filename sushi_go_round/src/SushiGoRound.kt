@@ -44,20 +44,7 @@ class SushiGoRound {
     }
 
     init {
-        window.addEventListener("load", onAction, false)
-        window.addEventListener("resize", onAction, false)
-    }
-
-    private fun finishEvent(current: HTMLLIElement?, children: List<HTMLLIElement>) {
-
-        children.forEachIndexed { _, it ->
-            val order = it.style.order.toInt()
-            it.style.order = when (order) {
-                0 -> (children.size - 1).toString()
-                else -> (order - 1).toString()
-            }
-        }
-        slide(current, children)
+        window.addEventListener("DOMContentLoaded", onAction, false)
     }
 
     private fun slide(current: HTMLLIElement?, children: List<HTMLLIElement>) {
