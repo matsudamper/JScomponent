@@ -11,7 +11,6 @@ class SushiGoRound {
 
     lateinit var styleSheet: CSSStyleSheet
     var targetRuleIndex: Int? = null
-    //var currentElement: HTMLLIElement? = null
     lateinit var ulArray: List<HTMLUListElement>
 
     private val onAction = EventListener {
